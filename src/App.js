@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import { CartesianGrid, Line, LineChart, Tooltip } from "recharts";
 import { colorArray } from "./utils/colors";
 import { Chart } from "./components/Chart/chart.component";
 import styles from "./app.module.css";
