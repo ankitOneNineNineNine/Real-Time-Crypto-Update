@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/real-time-crypto/static/css/main.e9426bf7.css",
-    "main.js": "/real-time-crypto/static/js/main.a90a0172.js",
-    "static/js/787.efb14491.chunk.js": "/real-time-crypto/static/js/787.efb14491.chunk.js",
-    "index.html": "/real-time-crypto/index.html",
-    "main.e9426bf7.css.map": "/real-time-crypto/static/css/main.e9426bf7.css.map",
-    "main.a90a0172.js.map": "/real-time-crypto/static/js/main.a90a0172.js.map",
-    "787.efb14491.chunk.js.map": "/real-time-crypto/static/js/787.efb14491.chunk.js.map"
+    "main.css": "/real-time-crypto-update/static/css/main.e9426bf7.css",
+    "main.js": "/real-time-crypto-update/static/js/main.53e4ff8c.js",
+    "static/js/787.efb14491.chunk.js": "/real-time-crypto-update/static/js/787.efb14491.chunk.js",
+    "index.html": "/real-time-crypto-update/index.html",
+    "main.e9426bf7.css.map": "/real-time-crypto-update/static/css/main.e9426bf7.css.map",
+    "main.53e4ff8c.js.map": "/real-time-crypto-update/static/js/main.53e4ff8c.js.map",
+    "787.efb14491.chunk.js.map": "/real-time-crypto-update/static/js/787.efb14491.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e9426bf7.css",
-    "static/js/main.a90a0172.js"
+    "static/js/main.53e4ff8c.js"
   ]
 }
