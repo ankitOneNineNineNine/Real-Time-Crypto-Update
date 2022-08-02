@@ -7,8 +7,8 @@ import { Chip } from "./components/Chip/chip.component";
 /**
  *
  * Function to remove duplicates in according to symbol
- * @param {*} array
- * @return {*} array
+ * @param {array} array
+ * @return {array}
  */
 function removeDuplicate(array) {
   let newArr = [];
@@ -22,8 +22,8 @@ function removeDuplicate(array) {
 /**
  *
  * Function to Find top 50 according to rank
- * @param {*} array
- * @return {*} array
+ * @param {array} array
+ * @return {array}
  */
 function findTop50(array) {
   array.sort((a, b) => a.rank - b.rank);
@@ -48,10 +48,11 @@ export default function App() {
         let object = { ...prices };
         top50.forEach((key) => {
           if (object[key]) {
-            if (object[key].length > 100) {
-              object[key] = object[key].splice(50);
+            if (object[key].length >= 200) {
+              object[key] = object[key].splice(25);
             }
             object[key].push({
+              name: new Date().toLocaleTimeString(),
               value: priceData[key] || object[key].slice(-1)[0].value,
             });
           }
@@ -73,7 +74,9 @@ export default function App() {
       setTop50(top50.map((top) => top.baseId));
       let data = {};
       for (const top of top50) {
-        data[top.baseId] = [{ value: top.priceUsd }];
+        data[top.baseId] = [
+          { name: new Date().toLocaleTimeString(), value: top.priceUsd },
+        ];
       }
       setPrices(data);
     });
@@ -81,7 +84,7 @@ export default function App() {
 
   useEffect(() => {
     selectTop50();
-  }, []);
+  }, [selectTop50]);
 
   /**
    *
@@ -119,8 +122,11 @@ export default function App() {
       <div className={styles["graph-container"]}>
         {showCrypto.map((top, i) => {
           return (
-            <div key={i}>
-              <h3>{top.toUpperCase()}</h3>
+            <div
+              key={i}
+              style={{ boxShadow: `0 0 5px ${colorArray[i]}`, margin: "5px" }}
+            >
+              <h3 style={{ textAlign: "center" }}>{top.toUpperCase()}</h3>
               <Chart priceData={prices[top]} color={colorArray[i]} />
             </div>
           );

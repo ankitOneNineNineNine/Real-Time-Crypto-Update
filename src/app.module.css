@@ -1,6 +1,9 @@
 .graph-container {
   display: flex;
   flex-wrap: wrap;
+  margin: 5px;
+  padding: 5px;
+  justify-content: center;
 }
 .chip-container {
   display: block;
