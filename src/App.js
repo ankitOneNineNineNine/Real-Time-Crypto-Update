@@ -25,7 +25,7 @@ function removeDuplicate(array) {
  * @param {array} array
  * @return {array}
  */
-function findTop50(array) {
+function findTop50Crypto(array) {
   array.sort((a, b) => a.rank - b.rank);
   return array.slice(0, 50);
 }
@@ -36,17 +36,17 @@ function findTop50(array) {
  */
 export default function App() {
   const [prices, setPrices] = useState([]);
-  const [top50, setTop50] = useState([]);
+  const [top50Crypto, setTop50Crypto] = useState([]);
   const [filter, setFilter] = useState([]);
   useEffect(() => {
-    if (top50) {
+    if (top50Crypto) {
       const priceWs = new WebSocket(
-        `wss://ws.coincap.io/prices?assets=${top50.join(",")}`
+        `wss://ws.coincap.io/prices?assets=${top50Crypto.join(",")}`
       );
       priceWs.onmessage = ({ data }) => {
         const priceData = JSON.parse(data);
         let object = { ...prices };
-        top50.forEach((key) => {
+        top50Crypto.forEach((key) => {
           if (object[key]) {
             if (object[key].length >= 200) {
               object[key] = object[key].splice(25);
@@ -63,17 +63,17 @@ export default function App() {
         }));
       };
     }
-  }, [top50, prices]);
+  }, [top50Crypto, prices]);
 
   /**
    * Selecting top 50 Values of Crypto to show their real time update
    */
-  const selectTop50 = useCallback(() => {
+  const selectTop50Crypto = useCallback(() => {
     axios.get("https://api.coincap.io/v2/markets").then((response) => {
-      const top50 = findTop50(removeDuplicate(response.data.data));
-      setTop50(top50.map((top) => top.baseId));
+      const Top50Crypto = findTop50Crypto(removeDuplicate(response.data.data));
+      setTop50Crypto(Top50Crypto.map((top) => top.baseId));
       let data = {};
-      for (const top of top50) {
+      for (const top of Top50Crypto) {
         data[top.baseId] = [
           { name: new Date().toLocaleTimeString(), value: top.priceUsd },
         ];
@@ -83,8 +83,8 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    selectTop50();
-  }, [selectTop50]);
+    selectTop50Crypto();
+  }, [selectTop50Crypto]);
 
   /**
    *
@@ -102,13 +102,15 @@ export default function App() {
   /**
    * Filter Logic
    */
-  const showCrypto = top50.filter((top) => !filter.includes(top.toLowerCase()));
+  const showCrypto = top50Crypto.filter(
+    (top) => !filter.includes(top.toLowerCase())
+  );
 
   return (
     <>
       <div className={styles["chip-container"]}>
         <h4>Filter</h4>
-        {top50.map((top) => {
+        {top50Crypto.map((top) => {
           return (
             <Chip
               id={top}
